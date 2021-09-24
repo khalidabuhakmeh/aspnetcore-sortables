@@ -31,7 +31,7 @@
 </form>
 
 <template id="template" type="x-tmpl-mustache">
-    @Html.Partial("Item", 
+    @await Html.PartialAsync("Item", 
         new GroceryItem(), 
         new(ViewData) {{"index", "{{index}}"}})
 </template>

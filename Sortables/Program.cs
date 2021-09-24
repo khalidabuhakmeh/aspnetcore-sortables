@@ -1,9 +1,4 @@
-using HashidsNet;
-
 var builder = WebApplication.CreateBuilder(args);
-
-var hashIds = new Hashids("this_is_a_hash");
-builder.Services.AddSingleton(hashIds);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
