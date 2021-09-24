@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form method="post" asp-page="Index" class="form">
+    
+    <button
+        class="btn btn-success mb-3"
+        hx-get="@Url.Page("Index", "Item")"
+        hx-target="#items"
+        hx-swap="beforeend">Add</button>
+    
+    <div id="items" class="sortable">
+        @for (var index = 0; index < Model.GroceryList.Items.Count; index++)
+        {
+            @Html.EditorFor(m => m.GroceryList.Items[index])
+        }
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

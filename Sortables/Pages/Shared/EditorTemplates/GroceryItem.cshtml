@@ -1,0 +1,9 @@
+@model Sortables.Models.GroceryItem
+
+<div class="input-group form-group mb-3">
+    <span class="input-group-text">Item</span>
+    <input type="text" class="form-control" asp-for="Name" />
+    <input type="number" asp-for="Amount">
+    <span asp-validation-for="Amount"></span>
+    @Html.HiddenIndexerInputForModel()
+</div>

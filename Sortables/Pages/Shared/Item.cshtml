@@ -1,0 +1,7 @@
+@using System.Security.Cryptography
+@model GroceryItem
+@{
+    var index = Guid.NewGuid().ToString("N");
+}
+
+@Html.Editor("", "Item", $"GroceryList.Items[{index}]")
