@@ -12,7 +12,7 @@ namespace Sortables.Models;
 public static class ListModelBindingExtensions
 {
     private static readonly Regex StripIndexerRegex = 
-        new(@"\[(?<index>\w+)\]", RegexOptions.Compiled);
+        new(@"\[(?<index>.+)\]", RegexOptions.Compiled);
 
     private static string GetIndexerFieldName(this TemplateInfo templateInfo)
     {

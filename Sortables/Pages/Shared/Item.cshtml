@@ -1,7 +1,7 @@
-@using System.Security.Cryptography
 @model GroceryItem
 @{
-    var index = Guid.NewGuid().ToString("N");
+    var index = ViewData.TryGetValue("index", out var value)
+        ? value 
+        : Guid.NewGuid().ToString("N");
 }
-
 @Html.Editor("", "Item", $"GroceryList.Items[{index}]")

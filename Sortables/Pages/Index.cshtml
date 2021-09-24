@@ -5,13 +5,22 @@
 }
 
 <form method="post" asp-page="Index" class="form">
-    
-    <button
-        class="btn btn-success mb-3"
-        hx-get="@Url.Page("Index", "Item")"
-        hx-target="#items"
-        hx-swap="beforeend">Add</button>
-    
+
+    <div class="mb-3">
+        @* HTMX Approach - Server-side *@
+        <button
+            class="btn btn-warning"
+            hx-get="@Url.Page("Index", "Item")"
+            hx-target="#items"
+            hx-swap="beforeend">Add From Server</button>
+
+        <!-- client-side -->
+        <button class="btn btn-success"
+                type="button"
+                onclick="addItem()">
+            Add From Client
+        </button>
+    </div>
     <div id="items" class="sortable">
         @for (var index = 0; index < Model.GroceryList.Items.Count; index++)
         {
@@ -20,3 +29,20 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<template id="template" type="x-tmpl-mustache">
+    @Html.Partial("Item", 
+        new GroceryItem(), 
+        new(ViewData) {{"index", "{{index}}"}})
+</template>
+
+<script type="text/javascript">
+    function addItem() {
+        let template = $('#template');
+        let items = $('#items');
+        // the index doesn't matter as long as its random(ish)
+        const index = Math.random().toString(16).substr(2, 8);
+        let element = Mustache.render(template.html(), { index : index });
+        items.append(element);
+    }
+</script>
